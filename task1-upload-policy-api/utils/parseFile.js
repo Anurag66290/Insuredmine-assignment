@@ -17,7 +17,7 @@ module.exports = async function parseFile(filePath) {
   for (const row of sheet) {
     // Create/Insert data into MongoDB
     const user = await User.create({
-      firstName: row.first_name,
+      firstName: row.first_name || row.firstname,
       dob: row.dob,
       address: row.address,
       phone: row.phone,
@@ -28,7 +28,7 @@ module.exports = async function parseFile(filePath) {
       userType: row.userType,
     });
 
-    const agent = await Agent.create({ name: row.agent_name });
+    const agent = await Agent.create({ name: row.agent });
     const account = await Account.create({ name: row.account_name });
     const lob = await LOB.create({ categoryName: row.category_name });
     const carrier = await Carrier.create({ companyName: row.company_name });

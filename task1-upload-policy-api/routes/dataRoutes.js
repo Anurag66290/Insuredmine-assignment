@@ -30,7 +30,7 @@ router.post('/upload', upload.single('file'), (req, res) => {
   const filePath = path.resolve(req.file.path);
   const workerPath = path.resolve(__dirname, '../workers/uploadWorker.js');
 
-  console.log('📁 Uploaded file:', filePath);
+  console.log('Uploaded file:', filePath);
 
   const worker = new Worker(workerPath);
   worker.postMessage({ filePath });
